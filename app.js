@@ -5,7 +5,7 @@ app.post('/', function (req, res) {
 	var xyz = {"response": {
    "outputSpeech": {
      "type": "PlainText",
-     "text": "Bosso ke wena"
+     "text": "Choki, I am very sorry, I know I hurt you and I know I'm not the best of people, but I care about you and I hope you can forgive me"
    },
    "shouldEndSession": true
  }
