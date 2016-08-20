@@ -22,6 +22,8 @@ app.post('/', function (req, res) {
 			res.json(xyz);
 	}
 	else if (req.body.request.intent.name=="List"){
+
+
 		var xyz = {	
 					"response": {
 					"outputSpeech": {
@@ -35,11 +37,12 @@ app.post('/', function (req, res) {
 	}
 	else if(req.body.request.intent.name == "Add")
 	{
+		var itemName = req.body.request.intent.slots.ItemA.value;
 		var xyz = {	
 					"response": {
 					"outputSpeech": {
 						"type": "PlainText",
-						"text": "Item has been added"
+						"text":  itemName +" has been added"
 					},
 					"shouldEndSession": true
 				}
