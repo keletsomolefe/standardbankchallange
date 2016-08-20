@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/keletsomolefe/standardbankchallange/issues"
   },
-  "homepage": "https://github.com/keletsomolefe/standardbankchallange#readme"
+  "homepage": "https://github.com/keletsomolefe/standardbankchallange#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
