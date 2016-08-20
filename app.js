@@ -8,11 +8,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/', function (req, res) {
 	console.log(req.body.request.type=="IntentRequest");
 	if (req.body.request.intent.name=="Remove"){
+
+		var itemName = req.body.request.intent.slots.ItemR.value;
 		var xyz = {	
 					"response": {
 					"outputSpeech": {
 						"type": "PlainText",
-						"text": "Item removed from the list"
+						"text": itemName "removed from the list"
 					},
 					"shouldEndSession": true
 				}
