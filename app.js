@@ -31,6 +31,32 @@ app.post('/', function (req, res) {
 			};
 			res.json(xyz);
 	}
+	else if(req.body.request.intent.name == "Add")
+	{
+		var xyz = {	
+					"response": {
+					"outputSpeech": {
+						"type": "PlainText",
+						"text": "Item has been added"
+					},
+					"shouldEndSession": true
+				}
+			};
+			res.json(xyz);
+	}
+	else if(req.body.request.intent.name == "Process")	
+	{
+		var xyz = {	
+					"response": {
+					"outputSpeech": {
+						"type": "PlainText",
+						"text": "Processing your order now"
+					},
+					"shouldEndSession": true
+				}
+			};
+			res.json(xyz);
+	}	
 });
 
 app.listen(3000, function () {
