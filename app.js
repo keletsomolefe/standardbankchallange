@@ -7,62 +7,97 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/', function (req, res) {
 	console.log(req.body.request.type=="IntentRequest");
-	if (req.body.request.intent.name=="Remove"){
+	if (req.body.request.intent.name=="Remove")
+	{
 
 		var itemName = req.body.request.intent.slots.ItemR.value;
-		var xyz = {	
-					"response": {
-					"outputSpeech": {
-						"type": "PlainText",
-						"text": itemName + "removed from the list"
-					},
-					"shouldEndSession": true
-				}
-			};
-			res.json(xyz);
+		var success = removeItem(itemName);
+
+		if(success)
+		{	
+			var xyz = {	
+						"response": {
+						"outputSpeech": {
+							"type": "PlainText",
+							"text": itemName + " has been removed from the list"
+						},
+						"shouldEndSession": true
+					}
+				};
+		}	res.json(xyz);
 	}
-	else if (req.body.request.intent.name=="List"){
+	else if (req.body.request.intent.name=="List")
+	{
+		var success = listItems();
 
-
-		var xyz = {	
-					"response": {
-					"outputSpeech": {
-						"type": "PlainText",
-						"text": "Here is your list"
-					},
-					"shouldEndSession": true
-				}
-			};
-			res.json(xyz);
+		if(success)
+		{	
+			var xyz = {	
+						"response": {
+						"outputSpeech": {
+							"type": "PlainText",
+							"text": "Here is your list"
+						},
+						"shouldEndSession": true
+					}
+				};
+		}		res.json(xyz);
 	}
 	else if(req.body.request.intent.name == "Add")
 	{
 		var itemName = req.body.request.intent.slots.ItemA.value;
-		var xyz = {	
-					"response": {
-					"outputSpeech": {
-						"type": "PlainText",
-						"text":  itemName +" has been added"
-					},
-					"shouldEndSession": true
-				}
-			};
-			res.json(xyz);
+		var success = addItem(itemName);
+
+		if(success)
+		{	
+			var xyz = {	
+						"response": {
+						"outputSpeech": {
+							"type": "PlainText",
+							"text":  itemName +" has been added"
+						},
+						"shouldEndSession": true)	
+					}
+				};
+				res.json(xyz);
+		}		
 	}
-	else if(req.body.request.intent.name == "Process")	
-	{
-		var xyz = {	
-					"response": {
-					"outputSpeech": {
-						"type": "PlainText",
-						"text": "Processing your order now"
-					},
-					"shouldEndSession": true
-				}
-			};
-			res.json(xyz);
+	else if(req.body.request.intent.name == "Process")
+	{	
+		var success = process();
+
+		if(success)
+		{	
+			var xyz = {	
+						"response": {
+						"outputSpeech": {
+							"type": "PlainText",
+							"text":  itemName +" has been added"
+						},
+						"shouldEndSession": true)	
+					}
+				};
+				res.json(xyz);
+		}		
 	}	
 });
+
+function addItem(Item)
+{
+	return true;
+}
+function removeItem(Item)
+{
+	return true;
+}
+function listItems()
+{
+	return true;
+}
+function process()
+{
+	return true;
+}
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
