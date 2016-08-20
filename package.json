@@ -1,0 +1,19 @@
+{
+  "name": "standardbankchallenge",
+  "version": "1.0.0",
+  "description": "Standard Bank Challange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keletsomolefe/standardbankchallange.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keletsomolefe/standardbankchallange/issues"
+  },
+  "homepage": "https://github.com/keletsomolefe/standardbankchallange#readme"
+}
