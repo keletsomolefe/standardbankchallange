@@ -14,7 +14,7 @@ app.post('/', function (req, res) {
 					"response": {
 					"outputSpeech": {
 						"type": "PlainText",
-						"text": itemName "removed from the list"
+						"text": itemName + "removed from the list"
 					},
 					"shouldEndSession": true
 				}
