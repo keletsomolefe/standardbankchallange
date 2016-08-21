@@ -77,14 +77,16 @@ var conn = mysql.createConnection({
 	{
 		sqlstmt = "SELECT 'item_Name' FROM 'List'";
 
-		conn.query(sqlstmt, function(err,rows)
+		var myList = conn.query(sqlstmt, function(err,rows)
 		{
 			numRows = rows.length;
 		});
 	
 		if(numRows > 0)
 		{	
-			return "Here is your Viands list.";
+			var output = "Here is your Viands list." + myList;
+			console.log(myList);
+			return output;
 		}
 		else
 		{
@@ -96,6 +98,6 @@ var conn = mysql.createConnection({
 
 	function processOrder()
 	{
-		
+
 	}
 
