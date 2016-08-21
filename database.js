@@ -85,7 +85,6 @@ var conn = mysql.createConnection({
 		if(numRows > 0)
 		{	
 			var output = "Here is your Viands list." + myList;
-			console.log(myList);
 			return output;
 		}
 		else
