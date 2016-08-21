@@ -36,8 +36,6 @@ connection.end();*/
 });*/
 
 
-var search = require('./search.js');
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -126,7 +124,7 @@ app.post('/', function (req, res) {
 });
 
 
-function addItem(Item)
+function addItem(Item, UserIden, callback)
 {
   connection.query("SELECT * FROM `list` WHERE description LIKE '% "+Item+" %'", function(error, rows, fields){
    // console.log(rows)
