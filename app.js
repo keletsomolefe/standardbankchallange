@@ -163,7 +163,25 @@ function removeItem(Item)
 }
 function listItems()
 {
-  return true;
+  sqlstmt = "SELECT 'description' FROM 'list' WHERE 'id' = 'mylist.Product_ID' AND 'mylist.user_ID' = userIden";
+
+    conn.query(sqlstmt, function(err,rows)
+    {
+      if(err) 
+        throw err;
+      if(rows == undefined)
+        return "Your Viands List is empty, If you'd like me to add anything, just ask.";
+
+        var output = "The items you have on your list are, ";
+        for(i = 0; i < rows.length; i++)
+        {
+          output += rows[i] + ", "
+          console.log(rows[i]);
+        }
+        
+        output += "I have selected these because they the most cost effective to suite your needs."
+        return output;
+    });
 }
 function process()
 {
