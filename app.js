@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var search = require('./search.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,21 +47,32 @@ app.post('/', function (req, res) {
 	else if(req.body.request.intent.name == "Add")
 	{
 		var itemName = req.body.request.intent.slots.ItemA.value;
-		var success = addItem(itemName);
+		var success = search.search_price(itemName);
 
-		if(success)
+		if(success != -1)
 		{	
 			var xyz = {	
 						"response": {
 						"outputSpeech": {
 							"type": "PlainText",
-							"text":  itemName +" has been added"
+							"text":  itemName +" has been added for " +  success.toString() + " rands."
 						},
-						"shouldEndSession": true)	
+						"shouldEndSession": true	
 					}
 				};
 				res.json(xyz);
-		}		
+		}	else {
+			var xyz = {	
+						"response": {
+						"outputSpeech": {
+							"type": "PlainText",
+							"text":  itemName +" is not available in stock."
+						},
+						"shouldEndSession": true	
+					}
+				};
+				res.json(xyz);
+		}	
 	}
 	else if(req.body.request.intent.name == "Process")
 	{	
@@ -74,7 +86,7 @@ app.post('/', function (req, res) {
 							"type": "PlainText",
 							"text":  itemName +" has been added"
 						},
-						"shouldEndSession": true)	
+						"shouldEndSession": true	
 					}
 				};
 				res.json(xyz);
@@ -99,6 +111,8 @@ function process()
 	return true;
 }
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(8080, function () {
+  console.log('Example app listening on port 8080!');
 });
+
+exports = module.exports = app;

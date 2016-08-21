@@ -2,6 +2,13 @@ woolies = open("woolies.csv", "r")
 lines = woolies.readlines()
 woolies.close()
 
+def print_dict(d):
+    s = "{"
+    s += '"name": "' + d["name"] + '", '
+    s += '"price": ' + str(d["price"])
+    s += "}"
+    return s
+
 def split_woolies(line):
     s = line.split('"')
     if len(s) != 5:
@@ -11,7 +18,7 @@ def split_woolies(line):
     price = price.replace(',', '')
     #print(s, name, price)
     price = float(price[2:])
-    return {"name" : name, "price" : price}
+    return print_dict({"name" : name, "price" : price})
 
 
 woolies = list(map(split_woolies, lines[1:]))
@@ -31,17 +38,31 @@ while i < len(lines):
         price = lines[i].split()
         try: 
             price = float(price[1] + '.' +  price[2])
-            pnp.append({"name": names, "price" : price})
+            pnp.append(print_dict({"name": names, "price" : price}))
         except:
             pass
     i += 1
 
 
 f = open('woolies.json', 'w')
-f.write(str(woolies))
+f.write('[\n')
+
+for s in woolies:
+    f.write('  ' + s)
+    if s != woolies[-1]:
+        f.write(',\n')
+
+f.write('\n]\n')
 f.close()
 f = open('pnp.json', 'w')
-f.write(str(pnp))
+f.write('[\n')
+
+for s in pnp:
+    f.write('  ' + s)
+    if s != pnp[-1]:
+        f.write(',\n')
+
+f.write('\n]\n')
 f.close()
 
 
