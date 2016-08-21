@@ -28,20 +28,18 @@ app.post('/', function (req, res) {
 	}
 	else if (req.body.request.intent.name=="List")
 	{
-		var success = listItems();
-
-		if(success)
-		{	
+		var result = listItems();
+	
 			var xyz = {	
 						"response": {
 						"outputSpeech": {
 							"type": "PlainText",
-							"text": "Here is your list"
+							"text": "Here is your list " + result; 
 						},
 						"shouldEndSession": true
 					}
 				};
-		}		res.json(xyz);
+			res.json(xyz);
 	}
 	else if(req.body.request.intent.name == "Add")
 	{
@@ -92,15 +90,31 @@ function addItem(Item)
 {
 	return true;
 }
-function removeItem(Item)
+function removeItem(Item,userIden)
 {
-	return true;
+
 }
-function listItems()
+function listItems(userIden)
 {
-	return true;
+	sqlstmt = "SELECT 'description' FROM 'list' WHERE 'id' = 'mylist.Product_ID' AND 'mylist.user_ID' = userIden";
+
+		conn.query(sqlstmt, function(err,rows)
+		{
+			if(err) 
+				throw err;
+			if(rows == undefined)
+				return "Your Viands List is empty, If you'd like me to add anything, just ask.";
+
+				var output = "Here is your Viands list. ";
+				for(i = 0; i < rows.length; i++)
+				{
+					output += rows[i] + ", "
+					console.log(rows[i]);
+				}
+				return output;
+		});
 }
-function process()
+function process(userIden)
 {
 	return true;
 }
