@@ -56,7 +56,7 @@ app.post('/', function (req, res) {
 							"type": "PlainText",
 							"text":  itemName +" has been added"
 						},
-						"shouldEndSession": true)	
+						"shouldEndSession": true	
 					}
 				};
 				res.json(xyz);
@@ -74,13 +74,19 @@ app.post('/', function (req, res) {
 							"type": "PlainText",
 							"text":  itemName +" has been added"
 						},
-						"shouldEndSession": true)	
+						"shouldEndSession": true	
 					}
 				};
 				res.json(xyz);
 		}		
 	}	
 });
+
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
+
 
 function addItem(Item)
 {
@@ -98,7 +104,3 @@ function process()
 {
 	return true;
 }
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
